@@ -1,0 +1,19 @@
+export EDITOR=nvim
+export VISUAL="$EDITOR"
+
+alias nix-config="$EDITOR ~/.config/nix/flake.nix"
+
+nix-rebuild() {
+    sudo /run/current-system/sw/bin/darwin-rebuild switch --flake ~/.config/nix#macbookpro "$@"
+}
+
+# pnpm
+export PNPM_HOME="/Users/ajsel/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+alias stripe-listen="stripe listen --forward-to http://localhost:3000/api/stripe/webhook"
+export PATH="$HOME/bin:$PATH"
