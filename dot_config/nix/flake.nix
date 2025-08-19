@@ -60,9 +60,9 @@
       nixpkgs.config.allowBroken = true;
       nixpkgs.config.allowUnfree = true;
 
-      system.activationScripts.extraActivation.text = ''
-    	softwareupdate --install-rosetta --agree-to-license
-  	'';
+      # system.activationScripts.extraActivation.text = ''
+    	#   softwareupdate --install-rosetta --agree-to-license
+  	  # '';
       
       homebrew = {
         enable = true;
@@ -70,10 +70,12 @@
         brews = [
           "mas"
           "pnpm"
+          "uv"
         ];
 
         casks = [
           "obsidian"
+          "nikitabobko/tap/aerospace"
         ];
 
         # Uncomment to install app store apps using mas-cli.
