@@ -31,62 +31,62 @@
       environment.systemPackages =
         [
 	        pkgs.git
+          pkgs.ripgrep
+          pkgs.awscli2
 	        pkgs.nodejs_22
+          pkgs.uv
+	        pkgs.fastfetch
+          pkgs.ffmpeg
+
 	        pkgs.wezterm
 	        pkgs.neovim
-	        pkgs.neofetch
-
 	        pkgs.docker
 	        pkgs.colima
 	        pkgs.lazydocker
-
-          pkgs.kubectl
-          pkgs.kubernetes-helm
-          pkgs.k3d
-          pkgs.skaffold
-          pkgs.devspace
           pkgs.k9s
 
-	        pkgs.jetbrains.webstorm
+          # pkgs.kubectl
+          # pkgs.kubernetes-helm
+          # pkgs.k3d
+          # pkgs.skaffold
+          # pkgs.devspace
 
-	        pkgs.logseq
+	        pkgs.jetbrains.webstorm
+          # pkgs.jetbrains.rider
+
 	        pkgs.raycast
 	        pkgs.telegram-desktop
 	        pkgs.thunderbird
           pkgs.qbittorrent
           pkgs.vlc-bin
+          pkgs.syncthing
         ];
 
       nixpkgs.config.allowBroken = true;
       nixpkgs.config.allowUnfree = true;
 
-      # system.activationScripts.extraActivation.text = ''
-    	#   softwareupdate --install-rosetta --agree-to-license
-  	  # '';
-      
       homebrew = {
         enable = true;
 
         brews = [
           "mas"
+          "wireguard-tools"
           "pnpm"
-          "uv"
+          "postgresql"
         ];
 
         casks = [
           "obsidian"
           "nikitabobko/tap/aerospace"
+          "battery"
         ];
 
-        # Uncomment to install app store apps using mas-cli.
         # masApps = {
         #   "Session" = 1521432881;
         # };
 
-        # Uncomment to remove any non-specified homebrew packages.
-        # onActivation.cleanUp = "zap";
+        onActivation.cleanup = "zap";
 
-        # Uncomment to automatically update Homebrew and upgrade packages.
         onActivation.autoUpdate = true;
         onActivation.upgrade = true;
       };
@@ -118,6 +118,8 @@
         loginwindow.GuestEnabled  = false;
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
         NSGlobalDomain.KeyRepeat = 2;
+        NSGlobalDomain.InitialKeyRepeat = 15;
+        trackpad.Clicking = true;
       };
     };
   in
@@ -130,10 +132,6 @@
         {
           nix-homebrew = {
             enable = true;
-
-            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-            # enableRosetta = true;
-
             user = "ajsel";
 
             taps = {
@@ -143,11 +141,8 @@
               "homebrew/homebrew-services" = homebrew-services;
             };
 
-            # Optional: Enable fully-declarative tap management
-            # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
             mutableTaps = true;
-
-	    autoMigrate = true;
+	          autoMigrate = true;
           };
         }
       ];
