@@ -1,4 +1,4 @@
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 alias nix-config="$EDITOR ~/.config/nix/flake.nix"
@@ -20,3 +20,4 @@ alias stripe-listen="stripe listen --forward-to http://localhost:3000/api/stripe
 alias sync-vps="ssh -i ~/.ssh/id_ed25519_debian-4gb-nbg1-2 -L 8384:localhost:8384 root@10.0.0.1"
 
 export PATH="$HOME/bin:$PATH"
+export PATH=/run/current-system/sw/bin:$PATH

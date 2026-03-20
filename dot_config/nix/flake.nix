@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -23,12 +22,13 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, mac-app-util, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-services, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-services, ... }:
   let
     configuration = { pkgs, ... }: {
       environment.systemPackages =
         [
 	        pkgs.git
+          pkgs.chezmoi
           pkgs.ripgrep
           pkgs.awscli2
 	        pkgs.nodejs_22
@@ -38,6 +38,7 @@
           pkgs.ffmpeg
 	        pkgs.wezterm
 	        pkgs.neovim
+          pkgs.raycast
 
           # docker
 	        pkgs.docker
@@ -50,7 +51,6 @@
 	        pkgs.jetbrains.webstorm
           # pkgs.jetbrains.rider
 
-	        pkgs.raycast
 	        pkgs.telegram-desktop
 	        pkgs.thunderbird
           pkgs.qbittorrent
@@ -98,7 +98,7 @@
         enableCompletion = true;
       };
 
-      nix.settings.experimental-features = "nix-command flakes";
+      nix.enable = false;
 
       system.primaryUser = "ajsel";
 
@@ -125,7 +125,6 @@
     darwinConfigurations."macbookpro" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration
-        mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew
         {
           nix-homebrew = {
