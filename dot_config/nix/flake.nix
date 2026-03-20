@@ -16,9 +16,7 @@
       flake = false;
     };
     homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
+      url = "github:homebrew/homebrew-bundle"; flake = false; };
     homebrew-services = {
       url = "github:homebrew/homebrew-services";
       flake = false;
@@ -34,22 +32,20 @@
           pkgs.ripgrep
           pkgs.awscli2
 	        pkgs.nodejs_22
+          pkgs.go
           pkgs.uv
 	        pkgs.fastfetch
           pkgs.ffmpeg
-
 	        pkgs.wezterm
 	        pkgs.neovim
+
+          # docker
 	        pkgs.docker
 	        pkgs.colima
 	        pkgs.lazydocker
-          pkgs.k9s
 
-          # pkgs.kubectl
-          # pkgs.kubernetes-helm
-          # pkgs.k3d
-          # pkgs.skaffold
-          # pkgs.devspace
+          # k8s
+          pkgs.k9s
 
 	        pkgs.jetbrains.webstorm
           # pkgs.jetbrains.rider
@@ -73,12 +69,14 @@
           "wireguard-tools"
           "pnpm"
           "postgresql"
+          "stripe-cli"
         ];
 
         casks = [
           "obsidian"
           "nikitabobko/tap/aerospace"
           "battery"
+          "localsend"
         ];
 
         # masApps = {
