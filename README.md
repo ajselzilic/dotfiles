@@ -7,5 +7,5 @@ My personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 To install and apply these dotfiles on a new machine, run:
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ajselzilic -b $HOME/bin
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ajselzilic/dotfiles/main/bootstrap.sh)"
 ```
