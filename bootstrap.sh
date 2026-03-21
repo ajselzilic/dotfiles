@@ -11,4 +11,4 @@ curl -fsSL https://install.determinate.systems/nix | sh -s -- install
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ajselzilic
 
 # 3. Switch nix-darwin
-nix run nix-darwin -- switch --flake ~/.config/nix#macbookpro
+sudo nix run nix-darwin -- switch --flake ~/.config/nix#macbookpro
