@@ -7,6 +7,10 @@ nix-rebuild() {
     sudo /run/current-system/sw/bin/darwin-rebuild switch --flake ~/.config/nix#macbookpro "$@"
 }
 
+nix-update() {
+    nix flake update --flake ~/.config/nix "$@"
+}
+
 # pnpm
 export PNPM_HOME="/Users/ajsel/Library/pnpm"
 case ":$PATH:" in

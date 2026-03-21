@@ -30,7 +30,6 @@
 	        pkgs.git
           pkgs.chezmoi
           pkgs.ripgrep
-          pkgs.awscli2
 	        pkgs.nodejs_22
           pkgs.go
           pkgs.uv
@@ -49,7 +48,6 @@
           pkgs.k9s
 
 	        pkgs.jetbrains.webstorm
-          # pkgs.jetbrains.rider
 
 	        pkgs.telegram-desktop
 	        pkgs.thunderbird
@@ -68,7 +66,6 @@
           "mas"
           "wireguard-tools"
           "pnpm"
-          "postgresql"
           "stripe-cli"
         ];
 
@@ -78,10 +75,6 @@
           "battery"
           "localsend"
         ];
-
-        # masApps = {
-        #   "Session" = 1521432881;
-        # };
 
         onActivation.cleanup = "zap";
 
@@ -138,7 +131,7 @@
               "homebrew/homebrew-services" = homebrew-services;
             };
 
-            mutableTaps = true;
+            mutableTaps = false;
 	          autoMigrate = true;
           };
         }
